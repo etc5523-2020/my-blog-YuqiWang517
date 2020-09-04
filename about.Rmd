@@ -1,0 +1,81 @@
+---
+title: "About This Website"
+
+bibliography: references.bib
+---
+
+This website disaplay some tables of COVID19 in Ireland.
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, massage = FALSE, warning = FALSE)
+library(tidyverse)
+library(readr)
+library(kableExtra)
+library(janitor)
+library(lubridate)
+library(plotrix)
+```
+
+
+
+# Data  sources and description
+ 
+The dataset in this Blog we used from the Republic of Ireland (Department of Health) [@Ireland] and WHO.  
+
+From the 31 December 2019 to the 21 March 2020, WHO [@WHO] collected the numbers of confirmed COVID-19 cases and deaths through official communications under the International Health Regulationsrecords and recorded the counts of new cases and deaths in 216 countries around the world starting from 2020/03/01.  
+
+The new case and death counts are calculated by subtracting the previous cumulative total from the current count. All data represent the date of the report, not the date of the onset of symptoms. This Blog focuses on observing Irish data.
+
+## Confirmed and death cases
+
+```{r}
+Ireland <- read.csv("data/WHO-COVID-19-global-data.csv") %>%
+  filter(Country %in%c("Ireland")) %>%
+  select(Date_reported,
+         Country,
+         New_cases,
+         Cumulative_cases,
+         New_deaths,
+         Cumulative_deaths )
+```
+
+```{r}
+DT::datatable(Ireland, options = list(pageLength = 4))
+```
+
+## Age distribution
+
+```{r}
+COVID <- read.csv("data/CovidStatisticsProfileHPSCIrelandOpenData.csv") %>%
+  select(-X, -Y, -StatisticsProfileDate, -HospitalisedCovidCases, -RequiringICUCovidCases, -HealthcareWorkersCovidCases, -ClustersNotified, -HospitalisedAged5, -HospitalisedAged5to14, -HospitalisedAged15to24, -HospitalisedAged25to34, -HospitalisedAged35to44, -HospitalisedAged45to54, -HospitalisedAged55to64, -HospitalisedAged65up, -Median_Age, -CommunityTransmission, -CloseContact, -TravelAbroad, -FID)
+
+```
+
+```{r}
+Ire0901 <- COVID %>%
+  filter(Date == "2020/09/01 00:00:00+00") %>%
+  select(-Date, -ConfirmedCovidCases, -TotalConfirmedCovidCases, -ConfirmedCovidDeaths, -TotalCovidDeaths, -CovidCasesConfirmed, -Male, -Female, -Unknown) %>%
+  pivot_longer(1:9, names_to = "Age_group", values_to = "Confirmed_number") %>%
+  mutate(Proportion = paste(round(Confirmed_number / sum(Confirmed_number), digits = 3) * 100, "%"))
+  
+```
+
+```{r}
+Ire0901 %>%
+  kable(caption = "Confirmed cases age distribution in Ireland") %>%
+kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+```{r}
+
+slices <- c(23.2, 12.2, 17.5, 17.6, 17.5, 9, 2, 0.7, 0.4)
+lbls <- c("Aged 65 up", "Aged 55-64", "Aged 45-54", "Aged 35-44", "Aged 25-34", "Aged 15-24", "Aged 5-14", "Aged 1-4", "Aged 1")
+pie3D(slices,labels=lbls,labelcex=0.6, explode=0.1, radius=0.9, col=c("brown","#ddaa00","pink","#dd00dd"), 
+   main="Pie Chart of Age distribution ")
+```
+
+
+From this table and pie chart, The biggest confirmed group(23.2%) is upper than 65 years old. Then, age25-34, age35-44 and age45-54 are approximately same as 17%.  
+From the data, it can be seen that the elder people over the age of 65 have the highest risk of getting the disease. The Irish Ministry of Health also stated that more than 90% of the deceased are over the age of 65, and most of them suffer from basic diseases or live in nursing homes [@Cullen_2020]. Furthermore, a number of former Irish football players [@wikipedia_2020] (Tom Scully(1930) -- former football manager, Danny Delaney(before the 1950s) -- Former footballer, Tom Mulholland(1936) -- Former footballer, Dave Bacuzzi(1940)--Former association football player and manager) all over 65 years old passed away in this infectious disease.  
+
+
