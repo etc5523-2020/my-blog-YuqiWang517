@@ -4,8 +4,9 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Ireland"
-      href: about.html 
+ 
+    - text: "Ukranie"
+      href: Ukranie.html 
       
 output:
   html_document:

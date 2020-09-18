@@ -1,0 +1,90 @@
+---
+title: "COVID19 in Ukraine"
+output: html_document
+bibliography: references.bib
+---
+
+This website disaplay some tables of COVID19 in Ukraine.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, massage = FALSE, warning = FALSE)
+library(tidyverse)
+library(readr)
+library(janitor)
+library(lubridate)
+library(plotrix)
+library(plotly)
+library(ggplot2)
+library(dplyr)
+library(hrbrthemes)
+```
+
+
+# Data sources and description
+ 
+The dataset in this Blog we used from the Our World in Data contributed by University of Oxford and Oxford Martin School[@Roser_ritchie_ortiz-ospina_hasell_2020] and WHO.  
+
+From the 31 December 2019 to the 21 March 2020, WHO [@WHO] collected the numbers of confirmed COVID-19 cases and deaths through official communications under the International Health Regulationsrecords and recorded the counts of new cases and deaths in 216 countries around the world starting from 2020/03/01.  
+
+The new case and death counts are calculated by subtracting the previous cumulative total from the current count. All data represent the date of the report, not the date of the onset of symptoms. This Blog focuses on observing Ukraine data.
+
+```{r}
+Ukraine <- read.csv("data/WHO-COVID-19-global-data.csv") %>%
+  filter(Country %in%c("Ukraine"))
+
+UkraineCOVID <- read.csv("data/owid-covid-data.csv")%>%
+  filter(location %in%c("Ukraine"))
+
+```
+
+
+# Daily new cases in Ukraine as of September 01, 2020
+
+```{r}
+Ukraine$Date_reported <- as.Date(Ukraine$Date_reported)
+p1 <- Ukraine %>%
+  ggplot( aes(x=Date_reported, y=New_cases)) +
+    geom_area(fill="#69b3a2", alpha=0.5) +
+    geom_line(color="#69b3a2") +
+    ylab("New Cases") +
+    theme_ipsum()
+p1 <- ggplotly(p1)
+p1
+```
+
+It can be seen from the figure that the number of daily confirmed cases of the Coronavirus19 in Ukraine has increased rapidly from March 03 to September 01 at the peak of 2481 new cases in August 29, 2020.   
+On March 3, the Ukrainian authorities announced the first confirmed case of COVID-19. Kuzin, the head of the Public Health Center of the Ministry of Health, said that the patient flew from Italy to Romania, and then to Ukraine by land, and was in Cherno on February 26 [@Staff_2020]. After the first confirmed cases in Ukraine was limited less than 10 new cases daily util March 21 (21 new cases).   
+On 25 March, the Government introduced a 30-day emergency regime across Ukraine that was scheduled planned to end on 24 April.  
+Since 6 April, wearing a face mask is required by the government in public places[@BBC_news].  
+The number of confirmed cases increased rapidly in April from 120 cases in April 1 to 540 cases in Apirl 30 and on Apirl 23 at the highest single-day increase of 578 cases.  
+On 4 May, the Ukrainian government extended the quarantine until 22 May [@Information_agency].
+Moreover, it is clearly to see fron the figure that from August to September, the daily confirmed cases increased in leaps and bounds from 1000 cases to more than 2000 cases everyday.
+
+## Cumulative confirmed cases and death in Ukraine as of September 17, 2020
+
+```{r}
+library(dygraphs)
+library(xts) # To make the convertion data-frame / xts format
+
+# Format 3: Several variables for each date
+Date <- UkraineCOVID$date <- as.Date(UkraineCOVID$date)
+total_cases <- UkraineCOVID$total_cases
+total_deaths <- UkraineCOVID$total_deaths
+data <- data.frame(Date,total_cases,total_deaths)
+
+# Then you can create the xts format:
+don=xts( x=data[,-1], order.by=data$Date)
+
+# Chart
+p2 <- dygraph(don)
+p2
+```
+
+
+So far we focused first on confirmed deaths and then on confirmed cases.This gragh shows both metrics.This figures shows confirmed deaths and cases change over time and tell us about the mortality risk of COVID-19 [@Roser_ritchie_ortiz-ospina_hasell_2020].
+It can be seen from the figure that the cumulative number of confirmed cases in Ukraine has reached 162,660, and the cumulative number of deaths has reached 3,340 as of September 17,2020. 
+Although the number of confirmed cases and deaths in Ukraine has been on the rise and has not eased, the death rate of Coronavirus 19 in Ukraine is about 2%, through a simple calculation. 
+On the one hand, this is due to the surge in new cases, which lowered the mortality rate.   
+On the other hand, the death rate has been controlled at a low level due to early measures taken by the government.
+
+
