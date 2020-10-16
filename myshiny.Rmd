@@ -1,0 +1,21 @@
+---
+title: "My shiny"
+subtitle: 'What did I do?'
+author:
+- name: Yuqi Wang
+  affiliation: University of Monash
+  email: ywan0454@student.monash.edu
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This app is a descriptive research aiming at visualising and analysing the number of COVID19 cases and deaths in Australia and Canada from 1st March 2020 to 7th October 2020.  
+
+- Table: the table of total cases and deaths can be selected to displayed by different time range you want to explore.  
+
+- A plotly graph: use ggplotly to visualize and analyze the number of everyday new cases in Australia and Canada from March to May and click certain day to show the details data on the plot.  
+
+- A dygraph plot: use dygraphs to visualize the total number of cases and deaths from 1st March 2020 to 7th October 2020 by slide the cursor on the curve to see the details.
+

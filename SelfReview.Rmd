@@ -1,0 +1,91 @@
+---
+title: "SelfReview"
+author: "Yuqi Wang-31258867"
+
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### What I did well?
+- Sidebar  
+
+Arranging table on the sidebar and graphs occupied 2/3 section on the shiny app which is more readable.   
+
+- Plotly and dygraghs  
+
+A dygragh based on comparing the number of cases and deaths in Australia and Canada from 1st March 2020 to 7th October 2020.  
+A plotly graph focus on comparing the everyday new cases from March to May for analysing the COVID19 in this two countries at the beginning of the epidemic.  
+
+- Sufficient explanations  
+
+Sufficient explanations for how to use this app and analyze the COVID19 in Australia and Canada by the outputs of plots ang tables.  
+
+- Update according to a change from user   
+
+Tables with selected data range and plots with selected country can be changed from users.  
+
+### What are the points I can improve on?
+- Generate “About section” in different pages by using side bar and header to structure the shiny app in a good visualization.  
+
+- Improving user input. I want to updates every section according to one user input instead of choosing three sections.
+
+### What are some things that I’d like to add that’s plausible?
+- Add citations in my shiny by using citr.  
+- Improving user input. I want to updates every section according to one user input instead of choosing three sections.  
+
+### What are some things that I’d like to add that cannot be done yet due to limitation indataor technology?
+- Tables and graphs cannot output When I using sidebarMenu(), menuItem(), tabItem() to generate my dashboard page as follow and I failed to figure it out.  
+
+ui <- fluidPage(   
+  sidebar <- dashboardSidebar( 
+    sidebarMenu( 
+      menuItem("About", tabName = "dashboard", icon = icon("dashboard")),  
+      menuItem("Tables", icon = icon("th"), tabName = "widgets"),  
+      menuItem("Plots", icon = icon("th"), tabName = "plots")  
+    )  
+  ),  
+  
+  body <- dashboardBody(  
+    tabItem(tabName = "dashboard",  
+              h2("Visuualising and analysing the COVID19 casesin Australia and Canada"),  
+              p("Creator: Yuqi Wang")  
+      ),  
+      tabItem(tabName = "widgets",  
+              h2("Total confirmed cases and deaths"),  
+      fluidRow(  
+        dateRangeInput("date", "Date Range:",    
+                       start = "2020-10-01",    
+                       end = "2020-10-07"),  
+        dataTableOutput("table")),  
+        p("Disaplaying the COVID19 cases and desths of Australia and Canada from 2020-01-03 to 2020-10-07 by selecting the date range on the top of the table. It is clear to see the cases in Canada was more than 150000 recently which is much more than Australia with not more than 30000 cases in October 2020."),  
+        p("Selecting which country you want to look at on the top of plot on the right. Visualizing the total cases and deaths by slide the cursor on the curve on dygragh, it will shows the number of cases and deaths curve from 2020-01-03 to 2020-10-07 in the certain country.")
+    ),  
+      tabItem(tabName = "plots",  
+              h3("Compare new cases in Australia and Canada",  
+                 plotlyOutput("gragh1"),  
+              verbatimTextOutput("plotlyClick"),  
+              p("Australia and Canada land areas are almost large and their control of COVID19 were better than other countries at the beginning.At the beginning of March, the cases of covid in both Australia and Canada are almost zero. There is an significant increase of COVID19 cases in Canada from the end of March to May. Although after the middle of March there is an significant increase in Australia almost 600 cases/ day, this situation have controlled after one month. "),  
+              p("The significant different development of the epidemic situation in the two countries is mainly due to the policies adopted. As @Costantino2020effectiveness wrote, on February 1, the Australian government implemented strict entry restrictions for person who came from the outbreak occurred countries. On March 19, Australia officially announced the closure of the entire territory. Non-Australian citizens / residents are prohibited from entering Australia. These measures strongly suppressed the continuous input of external infection cases earlier. Canada also issued a travel ban on March 18. The difference is that Canada ’s border policy is one-way to prohibit entry of people from high-risk countries, but Australia ’s border blockade is two-way. As @Chang2020modelling analysed that Australia not only does it prohibit all non-Australian citizens and residents from entering the country, but also restricts the exit, the two-way restriction measures minimize the cross-border spread of the virus."),      
+              h3("Compare total cases in Australia and Canada"),  
+              selectInput("Country", "What country do you want to look at?",  
+                          choices = c("Canada", "Australia"),  
+                          selected = "Australia"),  
+              dygraphOutput("gragh2")   
+  ))),  
+  dashboardPage(  
+    dashboardHeader(title = "Simple tabs"),  
+    sidebar,  
+    body  
+  ))  
+  
+  
+- Shiny app failed to publish with an error as follow. I googled this problem and try to use devtools::install_version("MASS", "7.3-51.1") but still not work.  
+
+Error: Unhandled Exception: Child Task 807098778 failed: Error building image: Error building systemfonts (0.3.1). Build exited with non-zero status: 1  
+
+
+If you have any suggestion please don not hesitate to share with me! 

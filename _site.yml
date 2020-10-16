@@ -4,9 +4,14 @@ navbar:
   left:
     - text: "Home"
       href: index.html
- 
+    - text: "Myshiny"
+      href: myshiny.html
+    - text: "SelfReview"
+      href: SelfReview.html
     - text: "Ukranie"
-      href: Ukranie.html 
+      href: Ukranie.html
+    - text: "Ireland"
+      href: about.html
       
 output:
   html_document:
