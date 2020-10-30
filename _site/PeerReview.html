@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Yuqi Wang-31258867" />
 
 
-<title>My shiny</title>
+<title>PeerReview</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -301,22 +302,76 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">My shiny</h1>
-<h3 class="subtitle">What did I do?</h3>
-<h4 class="author">Yuqi Wang</h4>
-<address class="author_afil">
-University of Monash<br><a class="author_email" href="mailto:#"><a href="mailto:ywan0454@student.monash.edu" class="email">ywan0454@student.monash.edu</a></a>
-</address>
+<h1 class="title toc-ignore">PeerReview</h1>
+<h4 class="author">Yuqi Wang-31258867</h4>
+<h4 class="date">2020/10/28</h4>
 
 </div>
 
 
-<p>This app is a descriptive research aiming at visualising and analysing the number of COVID19 cases and deaths in Australia and Canada from 1st March 2020 to 7th October 2020.</p>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>Peer review help me get better understand of how to make an R package and inspired me a lot from my classmates. I reviewed the package <a href="https://github.com/etc5523-2020/r-package-assessment-EmilySheehan0012"><code>coronaaus</code></a> created by <strong>Emily Sheehan</strong> for comparing and analyzing coronavirus in chosen states or territories in Australia.</p>
+<p>Functions:</p>
 <ul>
-<li><p>Table: the table of total cases and deaths can be selected to displayed by different time range you want to explore.</p></li>
-<li><p>A plotly graph: use ggplotly to visualize and analyze the number of everyday new cases in Australia and Canada from March to May and click certain day to show the details data on the plot.</p></li>
-<li><p>A dygraph plot: use dygraphs to visualize the total number of cases and deaths from 1st March 2020 to 7th October 2020 by slide the cursor on the curve to see the details.</p></li>
+<li><code>selectize_input</code><br />
+</li>
+<li><code>launch_app</code><br />
+</li>
+<li><code>covid_title</code></li>
 </ul>
+<p>Dataset:</p>
+<ul>
+<li><code>corona_aus</code></li>
+</ul>
+</div>
+<div id="what-i-think-this-package-would-do-did-they-do-it" class="section level3">
+<h3>What I think this package would do? Did they do it?</h3>
+<p>From the readme file, I suppose this package will contributed in exploring the number of confirmed and death cases in chosen states or territories in Australia at the beginning. After I launched her shiny app, it’s much fancier! The app does the comparation of each states or territories inputted by users and displayed in a line plot, a table and map. I think this package should include the data, app file, description file, readme file, pkgdown site, functions and pass the tests, she has all above sections which structured well in package and passed both R CMD check and unit test.</p>
+</div>
+<div id="are-the-improvements-they-could-do" class="section level3">
+<h3>Are the improvements they could do?</h3>
+<ul>
+<li>Code</li>
+</ul>
+<p>Using selectize_input function to simplify the input R code in app and covid_title function generates a title for the specified output in the app which inspiring me if we added more functions in package, the code in app will be simpler.</p>
+<ul>
+<li>Shiny app</li>
+</ul>
+<p>If her could make the plot, table and map those with input sections under the same page or same level of panel, I think it will have better visualization for readers. Another little suggestion for the variable name of table always is new cases and confirmed cases even when I choose the death input.</p>
+<ul>
+<li>Documentations</li>
+</ul>
+<p>The Readme file clearly showed the instructions for installing the package gave an example for how to display the coronavirus data in in package by using <code>head(coronaaus::corona_aus, 10)</code> . I think added plot to overview this package in this Readme file could be more visualization.</p>
+</div>
+<div id="what-i-have-learned-from-reviewing" class="section level3">
+<h3>What I have learned from reviewing?</h3>
+<p>Peer review really inspired me a lot. From Emily’s nice package, I learned how to create functions to simplified the code for shinny app in package. And get more familiar with the correct structure for R package. Furthermore, her shiny app also made me considering how to write a nice input like choosing different date as input to comparing and visualizing with different dates.</p>
+</div>
+<div id="check-list" class="section level3">
+<h3>Check list</h3>
+</div>
+<div id="package-review" class="section level2">
+<h2>Package Review</h2>
+<div id="documentation" class="section level4">
+<h4>Documentation</h4>
+<p>The package includes all the following forms of documentation:</p>
+<ul>
+<li>[X] <strong>Installation instructions:</strong> for the package is found in README</li>
+<li>[X] <strong>Vignette(s)</strong> demonstrating major functionality that runs successfully locally</li>
+<li>[X] <strong>Function Documentation:</strong> for all exported functions in R help</li>
+<li>[X] <strong>Examples</strong> for all exported functions in R Help that run successfully locally</li>
+</ul>
+</div>
+<div id="functionality" class="section level4">
+<h4>Functionality</h4>
+<ul>
+<li>[X] <strong>Installation:</strong> Installation succeeds as documented.</li>
+<li>[X] <strong>Functionality:</strong> Any functional claims of the software been confirmed.</li>
+<li>[X] <strong>Automated tests:</strong> Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.</li>
+</ul>
+</div>
+</div>
 
 
 

@@ -4,6 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "PeerReview"
+      href: PeerReview.html      
     - text: "Myshiny"
       href: myshiny.html
     - text: "SelfReview"

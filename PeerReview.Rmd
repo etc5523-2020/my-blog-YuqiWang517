@@ -1,0 +1,71 @@
+---
+title: "PeerReview"
+author: "Yuqi Wang-31258867"
+date: "2020/10/28"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+### Overview  
+
+Peer review help me get better understand of how to make an R package and inspired me a lot from my classmates. I reviewed the package [`coronaaus`](https://github.com/etc5523-2020/r-package-assessment-EmilySheehan0012) created by **Emily Sheehan** for comparing and analyzing coronavirus in chosen states or territories in Australia.  
+
+Functions:  
+
+- `selectize_input`  
+- `launch_app`  
+- `covid_title`  
+
+Dataset:  
+
+- `corona_aus`
+
+### What I think this package would do? Did they do it?  
+
+From the readme file, I suppose this package will contributed in exploring the number of confirmed and death cases in chosen states or territories in Australia at the beginning. After I launched her shiny app, it’s much fancier! The app does the comparation of each states or territories inputted by users and displayed in a line plot, a table and map.
+I think this package should include the data, app file, description file, readme file, pkgdown site, functions and pass the tests, she has all above sections which structured well in package and passed both R CMD check and unit test.
+
+### Are the improvements they could do?  
+
+-	Code  
+
+Using selectize_input function to simplify the input R code in app and covid_title function generates a title for the specified output in the app which inspiring me if we added more functions in package, the code in app will be simpler.  
+
+-	Shiny app  
+
+If her could make the plot, table and map those with input sections under the same page or same level of panel, I think it will have better visualization for readers. Another little suggestion for the variable name of table always is new cases and confirmed cases even when I choose the death input.  
+
+-	Documentations   
+
+The Readme file clearly showed the instructions for installing the package gave an example for how to display the coronavirus data in in package by using `head(coronaaus::corona_aus, 10)` . I think added plot to overview this package in this Readme file could be more visualization.
+
+### What I have learned from reviewing?  
+
+Peer review really inspired me a lot. From Emily’s nice package, I learned how to create functions to simplified the code for shinny app in package. And get more familiar with the correct structure for R package. Furthermore, her shiny app also made me considering how to write a nice input like choosing different date as input to comparing and visualizing with different dates.   
+
+
+### Check list  
+
+## Package Review 
+
+#### Documentation
+
+The package includes all the following forms of documentation:
+
+- [X] **Installation instructions:** for the package is found in README
+- [X] **Vignette(s)** demonstrating major functionality that runs successfully locally
+- [X] **Function Documentation:** for all exported functions in R help
+- [X] **Examples** for all exported functions in R Help that run successfully locally
+
+#### Functionality
+
+- [X] **Installation:** Installation succeeds as documented.
+- [X] **Functionality:** Any functional claims of the software been confirmed.
+- [X] **Automated tests:** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine.
+
+
