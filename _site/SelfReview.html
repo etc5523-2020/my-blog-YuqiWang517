@@ -348,7 +348,7 @@ A plotly graph focus on comparing the everyday new cases from March to May for a
 <ul>
 <li>Tables and graphs cannot output When I using sidebarMenu(), menuItem(), tabItem() to generate my dashboard page as follow and I failed to figure it out.</li>
 </ul>
-<p>ui &lt;- fluidPage(<br />
+<p>`ui &lt;- fluidPage(<br />
 sidebar &lt;- dashboardSidebar( sidebarMenu( menuItem(“About”, tabName = “dashboard”, icon = icon(“dashboard”)),<br />
 menuItem(“Tables”, icon = icon(“th”), tabName = “widgets”),<br />
 menuItem(“Plots”, icon = icon(“th”), tabName = “plots”)<br />
@@ -384,11 +384,11 @@ dashboardPage(<br />
 dashboardHeader(title = “Simple tabs”),<br />
 sidebar,<br />
 body<br />
-))</p>
+)) `</p>
 <ul>
 <li>Shiny app failed to publish with an error as follow. I googled this problem and try to use devtools::install_version(“MASS”, “7.3-51.1”) but still not work.</li>
 </ul>
-<p>Error: Unhandled Exception: Child Task 807098778 failed: Error building image: Error building systemfonts (0.3.1). Build exited with non-zero status: 1</p>
+<p><code>Error: Unhandled Exception: Child Task 807098778 failed: Error building image: Error building systemfonts (0.3.1). Build exited with non-zero status: 1</code></p>
 <p>If you have any suggestion please don not hesitate to share with me!</p>
 </div>
 

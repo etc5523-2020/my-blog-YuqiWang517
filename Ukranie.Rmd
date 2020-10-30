@@ -17,6 +17,8 @@ library(plotly)
 library(ggplot2)
 library(dplyr)
 library(hrbrthemes)
+library(dygraphs)
+library(xts) # To make the convertion data-frame / xts format
 ```
 
 
@@ -62,17 +64,14 @@ Moreover, it is clearly to see fron the figure that from August to September, th
 
 ## Cumulative confirmed cases and death in Ukraine as of September 17, 2020
 
-```{r}
-library(dygraphs)
-library(xts) # To make the convertion data-frame / xts format
-
+```{r echo = FALSE, massage = FALSE}
 # Format 3: Several variables for each date
 Date <- UkraineCOVID$date <- as.Date(UkraineCOVID$date)
 total_cases <- UkraineCOVID$total_cases
 total_deaths <- UkraineCOVID$total_deaths
 data <- data.frame(Date,total_cases,total_deaths)
 
-# Then you can create the xts format:
+# create the xts format:
 don=xts( x=data[,-1], order.by=data$Date)
 
 # Chart
